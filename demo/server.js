@@ -6,6 +6,7 @@ const assert = require('assert');
 
 const Server = require('../index').Server;
 const FileStore = require('../index').FileStore;
+const AzureBlobStore = require('../index').AzureBlobStore;
 const GCSDataStore = require('../index').GCSDataStore;
 const S3Store = require('../index').S3Store;
 const EVENTS = require('../index').EVENTS;
@@ -15,6 +16,15 @@ const server = new Server();
 const data_store = process.env.DATA_STORE || 'FileStore';
 
 switch (data_store) {
+    case 'AzureBlobStore':
+        server.datastore = new AzureBlobStore({
+            path: '/files',
+            account: 'TODO: get from env',
+            accountKey: 'TODO: get from env',
+            containerName: 'tus-node-server',
+        });
+        break;
+
     case 'GCSDataStore':
         server.datastore = new GCSDataStore({
             path: '/files',

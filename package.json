@@ -37,6 +37,7 @@
     "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "demo": "node demo/server.js",
     "gcs_demo": "cross-env DATA_STORE=GCSDataStore node demo/server.js",
+    "azure_demo": "cross-env DATA_STORE=AzureBlobStore node demo/server.js",
     "lint": "eslint ."
   },
   "devDependencies": {
@@ -56,6 +57,7 @@
     "tus-js-client": "^1.6.1"
   },
   "dependencies": {
+    "@azure/storage-blob": "^10.3.0",
     "@google-cloud/storage": "^2.4.2",
     "aws-sdk": "^2.418.0",
     "configstore": "^4.0.0",
